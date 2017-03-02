@@ -40,6 +40,23 @@ body .jumbotron {
 	line-height: 60px;
 }
 
+.col-md-12 p {
+
+	box-sizing: border-box;
+
+	color: rgb(51, 51, 51);
+
+	display: block;
+
+	font-family: 'Poppins', sans-serif;
+	
+	font-size: 30px;
+
+	font-weight: 300;
+	
+	line-height: 60px;
+}
+
 #targetScore {
 
 	box-sizing: border-box;

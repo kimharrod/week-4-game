@@ -6,7 +6,7 @@
   <title>week-4-game</title>
 
 <!-- Linking to Boostrap CDN -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -22,16 +22,14 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins" rel="stylesheet">
 
 
+<!-- JQuery -->
+  	<script src="https://code.jquery.com/jquery.js"></script>
+
+
 </head>
 
 
 <body>
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
 
 
 <div class="container">
@@ -39,10 +37,11 @@
 	<div class="row">
 
 		<div class="col-md-12">
+				
+				<div class="page-header">
+  				<h1>Gem Jam!</h1>
+				</div>
 
-				<div>
-		    	<h1>Match the target score to win a gem!</h1>	    	
-		    	</div>
 	    
 		</div>
 
@@ -54,7 +53,14 @@
 
 		<div class="col-md-8">
 
-			<div class="row top-buffer" id="targetScore">
+
+			<div class="row">
+
+				<p class="col-md-12">Match the target score to win a gem!</p>
+
+			</div>
+
+			<div class="row top-buffer" id="setTarget">
 
 				<p class="col-md-12">Insert target score here</p>
 
@@ -83,9 +89,14 @@
 		
 	    
 	    <div class="col-md-4">
-		</div>
 
-	</div>
+	    	<div class="row" id="gemBox">
+
+				<p class="col-md-12">My Gem Collection</p>
+
+			</div>
+
+		</div>
 
 
 </div>
@@ -96,6 +107,55 @@
       	</div>
     </footer> 
 
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	// Array of possible gems //
+		var gem = ["agate", "amethyst", "aragonite", "azurite", "celestine", "crystal", "fluorite", "gypsum", "jade", "olivine", "onyx", "quartz", "rhodochrosite", "rose", "unakite"];
+
+	// Set variables for the arrays of game gems and gem values
+
+		var gameGems = [];
+		var gemValues = [];
+		var gemPick = "";
+
+
+	// Generate a random target score between 12 and 120 to start the game //
+
+
+		var targetScore = Math.floor((Math.random() * 108) +12);
+		$("#setTarget").html(targetScore);
+		console.log(targetScore);
+
+
+	//Choose four gems randomly from the gem array and display
+
+	while (gameGems.length < 4) {
+		var gemPick = gem[Math.floor(Math.random() * gem.length)];
+
+			if (gameGems.indexOf(gemPick) === -1) {
+				gameGems.push(gemPick);
+			}
+
+			console.log(gemPick);
+		}
+
+
+	//Add a hidden value between 1 and 12 to each of the four gems; each gem shown should have a unique value
+	
+
+
+	   
+	   
+
+	   	var gameOver = 1;
+
+
+});
+
+</script>
 
 </body>
 
