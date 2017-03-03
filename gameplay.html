@@ -120,12 +120,13 @@ $(document).ready(function(){
 		var gameGems = [];
 		var gemValues = [];
 		var gemPick = "";
+		var clickValue = "";
 
 
-	// Generate a random target score between 12 and 120 to start the game //
+	// Generate a random target score between 19 and 120 to start the game //
 
 
-		var targetScore = Math.floor((Math.random() * 108) +12);
+		var targetScore = Math.floor((Math.random() * 101) +19);
 		$("#setTarget").html(targetScore);
 		console.log(targetScore);
 
@@ -135,6 +136,8 @@ $(document).ready(function(){
 	while (gameGems.length < 4) {
 		var gemPick = gem[Math.floor(Math.random() * gem.length)];
 
+			// If the gem hasn't already been chosen, then push it into the game gem array
+
 			if (gameGems.indexOf(gemPick) === -1) {
 				gameGems.push(gemPick);
 			}
@@ -142,6 +145,20 @@ $(document).ready(function(){
 			console.log(gemPick);
 		}
 
+	// Choose a value for each game gem between 1 and 12. Each gem should have a unique value  
+
+	for (var i = 0; i < 4; i++) {
+		var clickValue = Math.floor(Math.random() * 12);
+
+		if (gemValues.indexOf(clickValue) === -1) {
+			gemValues.push(clickValue);
+
+			console.log(clickValue);
+
+		}
+
+
+	}
 
 	//Add a hidden value between 1 and 12 to each of the four gems; each gem shown should have a unique value
 	
