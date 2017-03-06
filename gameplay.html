@@ -105,7 +105,7 @@
 
 		
 	    
-	    <div class="col-md-4" id="gemBox">
+	    <div class="col-md-4" id="gembox">
 
 	    	<div class="row">
 
@@ -113,7 +113,7 @@
 
 			</div>
 
-			<div class="row">
+			<div class="row top-buffer">
 				
 				<div class="col-md-4">
 				<img id="agate" src="assets/images/agate.png" alt="agate" class="img-thumbnail">
@@ -128,7 +128,7 @@
 			</div>
 
 
-			<div class="row">
+			<div class="row top-buffer">
 				
 				<div class="col-md-4">
 				<img id="azurite" src="assets/images/azurite.png" alt="azurite" class="img-thumbnail">
@@ -143,7 +143,7 @@
 			</div>
 
 
-			<div class="row">
+			<div class="row top-buffer">
 				
 				<div class="col-md-4">
 				<img id="fluorite" src="assets/images/fluorite.png" alt="fluorite" class="img-thumbnail">
@@ -158,7 +158,7 @@
 			</div>
 
 
-			<div class="row">
+			<div class="row top-buffer">
 				
 				<div class="col-md-4">
 				<img id="olivine" src="assets/images/olivine.png" alt="olivine" class="img-thumbnail">
@@ -172,7 +172,7 @@
 
 			</div>
 
-			<div class="row">
+			<div class="row top-buffer bottom-buffer">
 				
 				<div class="col-md-4">
 				<img id="rhodochrosite" src="assets/images/rhodochrosite.png" alt="rhodochrosite" class="img-thumbnail">
@@ -217,6 +217,13 @@ $(document).ready(function(){
 
 		var gamesWon = 0;
 		var gamesLost = 0;
+
+
+	// This function shows a faint shadow of the full collection of gems at game start
+
+		for (var i = 0; i < gem.length; i++) {
+		 	$('#' + gem[i]).fadeTo(3000,0.1);
+		 } 
 
 	// This function initializes and resets the game
 

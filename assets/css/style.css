@@ -23,6 +23,11 @@ body .jumbotron {
 	margin-top: 10px; 
 }
 
+.bottom-buffer { 
+
+	margin-bottom: 10px; 
+}
+
 .col-md-12, .col-med-6 {
 
 	box-sizing: border-box;
@@ -40,6 +45,11 @@ body .jumbotron {
 	line-height: 60px;
 }
 
+#gembox {
+
+	background-color: azure;
+	text-align: center;
+}
 
 #setTarget {
 
