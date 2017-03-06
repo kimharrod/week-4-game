@@ -113,75 +113,75 @@
 
 			</div>
 
-			<div class="row" id="gemSpots">
+			<div class="row">
 				
 				<div class="col-md-4">
-				<img src="assets/images/agate.png" alt="agate" class="img-thumbnail">
+				<img id="agate" src="assets/images/agate.png" alt="agate" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/amethyst.png" alt="agate" class="img-thumbnail">
+				<img id="amethyst" src="assets/images/amethyst.png" alt="amethyst" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/aragonite.png" alt="agate" class="img-thumbnail">
+				<img id="aragonite" src="assets/images/aragonite.png" alt="aragonite" class="img-thumbnail">
 				</div>
 
 			</div>
 
 
-			<div class="row" id="gemSpots">
+			<div class="row">
 				
 				<div class="col-md-4">
-				<img src="assets/images/azurite.png" alt="agate" class="img-thumbnail">
+				<img id="azurite" src="assets/images/azurite.png" alt="azurite" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/celestine.png" alt="agate" class="img-thumbnail">
+				<img id="celestine" src="assets/images/celestine.png" alt="celestine" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/crystal.png" alt="agate" class="img-thumbnail">
+				<img id="crystal" src="assets/images/crystal.png" alt="crystal" class="img-thumbnail">
 				</div>
 
 			</div>
 
 
-			<div class="row" id="gemSpots">
+			<div class="row">
 				
 				<div class="col-md-4">
-				<img src="assets/images/fluorite.png" alt="agate" class="img-thumbnail">
+				<img id="fluorite" src="assets/images/fluorite.png" alt="fluorite" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/gypsum.png" alt="agate" class="img-thumbnail">
+				<img id="gypsum" src="assets/images/gypsum.png" alt="gypsum" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/jade.png" alt="agate" class="img-thumbnail">
+				<img id="jade" src="assets/images/jade.png" alt="jade" class="img-thumbnail">
 				</div>
 
 			</div>
 
 
-			<div class="row" id="gemSpots">
+			<div class="row">
 				
 				<div class="col-md-4">
-				<img src="assets/images/olivine.png" alt="agate" class="img-thumbnail">
+				<img id="olivine" src="assets/images/olivine.png" alt="olivine" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/onyx.png" alt="agate" class="img-thumbnail">
+				<img id="onyx" src="assets/images/onyx.png" alt="onyx" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/quartz.png" alt="agate" class="img-thumbnail">
+				<img id="quartz" src="assets/images/quartz.png" alt="quartz" class="img-thumbnail">
 				</div>
 
 			</div>
 
-			<div class="row" id="gemSpots">
+			<div class="row">
 				
 				<div class="col-md-4">
-				<img src="assets/images/rhodochrosite.png" alt="agate" class="img-thumbnail">
+				<img id="rhodochrosite" src="assets/images/rhodochrosite.png" alt="rhodochrosite" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/rose.png" alt="agate" class="img-thumbnail">
+				<img id="rose" src="assets/images/rose.png" alt="rose" class="img-thumbnail">
 				</div>
 				<div class="col-md-4">
-				<img src="assets/images/unakite.png" alt="agate" class="img-thumbnail">
+				<img id="unakite" src="assets/images/unakite.png" alt="unakite" class="img-thumbnail">
 				</div>
 
 			</div>
@@ -334,7 +334,7 @@ $(document).ready(function(){
 		// Checks for win (counter equals target score) or loss (counter exceeds target score)
 
 		if (counter === targetScore) {
-			$("#winlossMessage").text("You won!");
+			$("#winlossMessage").text("You won! Choose a gem for your collection.");
 			gamesWon++;
 			$("#winlossCounter").html("Wins: " + gamesWon + "&nbsp;&nbsp;Losses: " + gamesLost);
 			gameOver = 1;
