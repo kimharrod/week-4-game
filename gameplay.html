@@ -39,7 +39,7 @@
 		<div class="col-md-12">
 				
 				<div class="page-header">
-  				<h1>Gem Jam!</h1>
+  				<h1>Match the target score to win a gem!</h1>
 				</div>
 
 	    
@@ -56,31 +56,43 @@
 
 			<div class="row">
 
-				<p class="col-md-12">Match the target score to win a gem!</p>
+				<p class="col-md-12">Target score is:</p>
 
 			</div>
 
-			<div class="row top-buffer" id="setTarget">
+			<div class="row" id="setTarget">
 
-				<p class="col-md-12">Insert target score here</p>
+				<p class="col-md-12"></p>
 
 			</div>
 
-			<div class="row top-buffer" id="gameCounter">
+			<div class="row top-buffer">
 
-				<p class="col-md-12">Insert game counter here</p>
+				<p class="col-md-12">Your score is:</p>
+
+			</div>
+
+			<div class="row" id="gameCounter">
+
+				<p class="col-md-12">0</p>
 
 			</div>
 
 	    	<div class="row top-buffer" id="gemImages">
 
-				<p class="col-md-12">Insert gem images here</p>
+				<p class="col-md-12"></p>
 
 			</div>
 
 			<div class="row top-buffer" id="winlossMessage">
 
-				<p class="col-md-12">Insert win/loss message here</p>
+				<p class="col-md-12"></p>
+
+			</div>
+
+			<div class="row top-buffer" id="winlossCounter">
+
+				<p class="col-md-12">Wins: 0 &nbsp;&nbsp; Losses: 0</p>
 
 			</div>
 			
@@ -122,59 +134,87 @@ $(document).ready(function(){
 		var gemPick = "";
 		var clickValue = "";
 		var counter = 0;
+		var gameOver = 0;
+		var targetScore = 0;
+
+		var gamesWon = 0;
+		var gamesLost = 0;
+
+	// This function initializes and resets the game
+
+		function initGame () {
+
+		gameGems = [];
+		gemValues = [];
+		gemPick = "";
+		clickValue = "";
+		counter = 0;
+		gameOver = 0;
+
+		
+
+		// Generate a random target score between 19 and 120 to start the game //
 
 
-	// Generate a random target score between 19 and 120 to start the game //
-
-
-		var targetScore = Math.floor((Math.random() * 101) +19);
-		$("#setTarget").html(targetScore);
+		targetScore = Math.floor((Math.random() * 101) +19);
+		$("#setTarget").append(targetScore);
 		console.log(targetScore);
 
 
-	//Choose four gems randomly from the gem array
 
-	while (gameGems.length < 4) {
-		var gemPick = gem[Math.floor(Math.random() * gem.length)];
+		//Choose four gems randomly from the gem array
 
-			// If the gem hasn't already been chosen, then push it into the game gem array
+		while (gameGems.length < 4) {
+			var gemPick = gem[Math.floor(Math.random() * gem.length)];
 
-			if (gameGems.indexOf(gemPick) === -1) {
-				gameGems.push(gemPick);
+				// If the gem hasn't already been chosen, then push it into the game gem array
+
+				if (gameGems.indexOf(gemPick) === -1) {
+					gameGems.push(gemPick);
+				}
+				
+				console.log(gemPick);
 			}
-			
-			console.log(gemPick);
-		}
 
-	// Display the game gem images by appending each one into the gem images div. Add a class that allows for a click event 
+		// Display the game gem images by appending each one into the gem images div. Add a class that allows for a click event 
 
-	for (var i = 0; i < 4; i++) {
-	
-		var imageUrl = "<img class='gem_image' src='assets/images/" + gameGems[i] + ".png'> ";
-		$("#gemImages").append(imageUrl);
+		for (var i = 0; i < 4; i++) {
+		
+			var imageUrl = "<img class='gem_image' src='assets/images/" + gameGems[i] + ".png'> ";
+			$("#gemImages").append(imageUrl);
 
-		}						 
+			}						 
 	
 
-	// Choose a value for each game gem between 1 and 12 
+		// Choose a value for each game gem between 1 and 12 
 
-	while (gemValues.length < 4) {
-		var clickValue = Math.floor(Math.random() * 12);
+		while (gemValues.length < 4) {
+			var clickValue = Math.floor((Math.random() * 12) + 1);
 
-	// Each gem should have a unique value; if the random value generated has not been used, push it into the gem value array
+		// Each gem should have a unique value; if the random value generated has not been used, push it into the gem value array
 
-		if (gemValues.indexOf(clickValue) === -1) {
-			gemValues.push(clickValue);
+			if (gemValues.indexOf(clickValue) === -1) {
+				gemValues.push(clickValue);
+			}
+
 		}
 
-	}
+		// Set the click event for the gem images on the page
 
-	console.log(gemValues);
+		$(".gem_image").click(gemClicked);
+
+		console.log(gemValues);
+
+	}  // end function initGame
 
 
 	// Create function - for each click on a gem image, we are looking up the value of that gem, and adding that value to the counter.
 
 	function gemClicked () {
+
+		if (gameOver === 1) {
+			return;
+		} 
 
 		// First, extract the gem name from the source attribute, i.e. the path to the gem image. To do this, split the file path up into elements of an array. The last element will be the file name. 
 
@@ -206,33 +246,29 @@ $(document).ready(function(){
 
 		if (counter === targetScore) {
 			$("#winlossMessage").text("You win!");
+			gamesWon++;
+			$("#winlossCounter").html("Wins: " + gamesWon + "&nbsp;&nbsp;Losses: " + gamesLost);
+			gameOver = 1;
 		}
 
 		if (counter > targetScore) {
 			$("#winlossMessage").text("You went over - you lose.");
+			gamesLost++;
+			$("#winlossCounter").html("Wins: " + gamesWon + "&nbsp;&nbsp;Losses: " + gamesLost);
+			gameOver = 1;
 		}
 
-	}
+	} // end function gemClicked
 
-		// Set the click event for the gem images on the page
+	function resetCounter () {
 
+		gamesWon = 0;
+		gamesLost = 0;
+		$("#winlossCounter").html("Wins: " + gamesWon + "&nbsp;&nbsp;Losses: " + gamesLost);
 
-		$(".gem_image").click(gemClicked);
-
-		
-
-	
-
-
-	
-	
-
-
-	   
-	   
-
-	   	var gameOver = 1;
-
+	} // end function resetCounter
+	   	
+initGame();
 
 });
 
