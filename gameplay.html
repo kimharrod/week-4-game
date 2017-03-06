@@ -90,9 +90,14 @@
 
 			</div>
 
-			<div class="row top-buffer" id="winlossCounter">
+			<div class="row top-buffer">
 
-				<p class="col-md-12">Wins: 0 &nbsp;&nbsp; Losses: 0</p>
+				<p class="col-md-6" id="winlossCounter">Wins: 0 &nbsp;&nbsp; Losses: 0</p>
+
+				<p class="col-md-6">
+					<a href="#" class="btn btn-info btn-med" id="playagainbutton" role="button">Play again</a>&nbsp;
+					<a href="#" class="btn btn-info btn-med" id="resetbutton" role="button">Reset Count</a>
+				</p>
 
 			</div>
 			
@@ -100,11 +105,84 @@
 
 		
 	    
-	    <div class="col-md-4">
+	    <div class="col-md-4" id="gemBox">
 
-	    	<div class="row" id="gemBox">
+	    	<div class="row">
 
 				<p class="col-md-12">My Gem Collection</p>
+
+			</div>
+
+			<div class="row" id="gemSpots">
+				
+				<div class="col-md-4">
+				<img src="assets/images/agate.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/amethyst.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/aragonite.png" alt="agate" class="img-thumbnail">
+				</div>
+
+			</div>
+
+
+			<div class="row" id="gemSpots">
+				
+				<div class="col-md-4">
+				<img src="assets/images/azurite.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/celestine.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/crystal.png" alt="agate" class="img-thumbnail">
+				</div>
+
+			</div>
+
+
+			<div class="row" id="gemSpots">
+				
+				<div class="col-md-4">
+				<img src="assets/images/fluorite.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/gypsum.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/jade.png" alt="agate" class="img-thumbnail">
+				</div>
+
+			</div>
+
+
+			<div class="row" id="gemSpots">
+				
+				<div class="col-md-4">
+				<img src="assets/images/olivine.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/onyx.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/quartz.png" alt="agate" class="img-thumbnail">
+				</div>
+
+			</div>
+
+			<div class="row" id="gemSpots">
+				
+				<div class="col-md-4">
+				<img src="assets/images/rhodochrosite.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/rose.png" alt="agate" class="img-thumbnail">
+				</div>
+				<div class="col-md-4">
+				<img src="assets/images/unakite.png" alt="agate" class="img-thumbnail">
+				</div>
 
 			</div>
 
@@ -150,6 +228,9 @@ $(document).ready(function(){
 		clickValue = "";
 		counter = 0;
 		gameOver = 0;
+		$("#gemImages").html("");
+		$("#gameCounter").text(0);
+		$("#winlossMessage").text("");
 
 		
 
@@ -157,7 +238,7 @@ $(document).ready(function(){
 
 
 		targetScore = Math.floor((Math.random() * 101) +19);
-		$("#setTarget").append(targetScore);
+		$("#setTarget").text(targetScore);
 		console.log(targetScore);
 
 
@@ -205,6 +286,14 @@ $(document).ready(function(){
 
 		console.log(gemValues);
 
+		// Button to play again
+
+		$("#playagainbutton").click(initGame);
+
+		// Button to reset the win/loss counter
+
+		$("#resetbutton").click(resetCounter);
+
 	}  // end function initGame
 
 
@@ -245,14 +334,14 @@ $(document).ready(function(){
 		// Checks for win (counter equals target score) or loss (counter exceeds target score)
 
 		if (counter === targetScore) {
-			$("#winlossMessage").text("You win!");
+			$("#winlossMessage").text("You won!");
 			gamesWon++;
 			$("#winlossCounter").html("Wins: " + gamesWon + "&nbsp;&nbsp;Losses: " + gamesLost);
 			gameOver = 1;
 		}
 
 		if (counter > targetScore) {
-			$("#winlossMessage").text("You went over - you lose.");
+			$("#winlossMessage").text("Too high - you lost.");
 			gamesLost++;
 			$("#winlossCounter").html("Wins: " + gamesWon + "&nbsp;&nbsp;Losses: " + gamesLost);
 			gameOver = 1;
@@ -265,6 +354,7 @@ $(document).ready(function(){
 		gamesWon = 0;
 		gamesLost = 0;
 		$("#winlossCounter").html("Wins: " + gamesWon + "&nbsp;&nbsp;Losses: " + gamesLost);
+		initGame();
 
 	} // end function resetCounter
 	   	
