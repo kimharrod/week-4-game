@@ -214,15 +214,16 @@ $(document).ready(function(){
 		var counter = 0;
 		var gameOver = 0;
 		var targetScore = 0;
+		var gemisSaved = 0;
 
 		var gamesWon = 0;
 		var gamesLost = 0;
 
 
-	// This function shows a faint shadow of the full collection of gems at game start
+	// This function shows a faint shadow of the full collection of gems at game start. It uses variable substitution on a jQuery selector for the gem image ID.
 
 		for (var i = 0; i < gem.length; i++) {
-		 	$('#' + gem[i]).fadeTo(3000,0.1);
+		 	$('#' + gem[i]).fadeTo(2000,0.1);
 		 } 
 
 	// This function initializes and resets the game
@@ -235,6 +236,7 @@ $(document).ready(function(){
 		clickValue = "";
 		counter = 0;
 		gameOver = 0;
+		gemisSaved = 0;
 		$("#gemImages").html("");
 		$("#gameCounter").text(0);
 		$("#winlossMessage").text("");
@@ -312,7 +314,7 @@ $(document).ready(function(){
 			return;
 		} 
 
-		// First, extract the gem name from the source attribute, i.e. the path to the gem image. To do this, split the file path up into elements of an array. The last element will be the file name. 
+		// Extract the gem name from the source attribute by splitting the file path up into elements of an array. The last element will be the file name.
 
 		var sourceAttribute = $(this).attr("src");
 		var gemName = sourceAttribute.split('\\').pop().split('/').pop();
@@ -345,6 +347,7 @@ $(document).ready(function(){
 			gamesWon++;
 			$("#winlossCounter").html("Wins: " + gamesWon + "&nbsp;&nbsp;Losses: " + gamesLost);
 			gameOver = 1;
+			$(".gem_image").click(saveGem);
 		}
 
 		if (counter > targetScore) {
@@ -355,6 +358,40 @@ $(document).ready(function(){
 		}
 
 	} // end function gemClicked
+
+
+	// Function to save a gem to the My Gem Collection when you win the game
+
+	function saveGem () {
+
+		if (gemisSaved === 1) {
+			return;
+		}
+
+		//Extract the gem name from the source attribute by splitting the file path up into elements of an array. The last element will be the file name.
+
+		var sourceAttribute = $(this).attr("src");
+		var gemSaved = sourceAttribute.split('\\').pop().split('/').pop();
+
+		//Slice the file extension off the gem image file name
+
+		gemSaved = gemSaved.slice(0, -4);
+
+		//The selected gem appears in full color in the My Gem Collection box, by performing variable substitution on the jQuery selector for the gem image ID.
+
+		$("#" + gemSaved).fadeTo(2000, 1.0);
+
+		console.log("gem to save: " + gemSaved);
+
+		//Ensures only one gem can be saved after each win
+
+		gemisSaved = 1;
+
+
+	} //end of saveGem function
+
+
+	// Function to reset the win/loss counter to 0 and reinitialize the game
 
 	function resetCounter () {
 
